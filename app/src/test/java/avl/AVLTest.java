@@ -267,17 +267,25 @@ public class AVLTest {
   @Test
   /** Test rightRotate on a node with a non-null parent and left.right */
   public void test42rightRotate() {
+    // Tree contributed by Kaila Hulse, Spring 2022
     AVL a = new AVL();
     a.bstInsert("a");
     a.bstInsert("y");
     a.bstInsert("v");
+    a.bstInsert("s");
+    a.bstInsert("e");
+    a.bstInsert("t");
     a.bstInsert("z");
     a.bstInsert("x");
+    //a.printTree();
     check(a);
 
-    a.rightRotate(a.search("y"));
+    a.rightRotate(a.search("v"));
     check(a);
-    treeEquals(a, "a v y x z", "a v x y z", "x z y v a");
+    //printAssert(a);
+    //a.printTree();
+    treeEquals(a, "a y s e v t x z", "a e s t v x y z", "e t x v s z y a");
+
   }
 
 
@@ -405,13 +413,18 @@ public class AVLTest {
   @Test
   /** Test rebalance works in case 4 (RR) on the root */
   public void test58rebalance() {
+    // Tree whose root has 2 children contributed by
+    // Charlie Havener, Spring 2022
     AVL a = new AVL();
-    a.bstInsert("x"); a.search("x").height = 2;
-    a.bstInsert("y"); a.search("y").height = 1;
-    a.bstInsert("z"); a.search("z").height = 0;
+    a.bstInsert("b"); a.search("b").height = 3;
+    a.bstInsert("a"); a.search("a").height = 0;
+    a.bstInsert("d"); a.search("d").height = 2;
+    a.bstInsert("c"); a.search("c").height = 0;
+    a.bstInsert("e"); a.search("e").height = 1;
+    a.bstInsert("f"); a.search("f").height = 0;
 
     a.rebalance(a.root);
-    treeEquals(a, "y x z", "x y z", "x z y");
+    treeEquals(a, "d b a c e f", "a b c d e f", "a c b f e d");
   }
 
 
