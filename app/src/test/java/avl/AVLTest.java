@@ -136,6 +136,20 @@ public class AVLTest {
   }
 
   @Test
+  /** Test contributed by Sam Akau, Summer 2025 */
+  public void test05bstInsert() {
+    AVL a = new AVL();
+    a.bstInsert("a");
+    a.bstInsert("x");
+    a.bstInsert("v");
+    a.bstInsert("z");
+    a.bstInsert("y");
+    assertEquals("a v x y z", inOrder(a.root));
+    assertEquals("a x v z y", preOrder(a.root));
+    assertEquals("v y z x a", postOrder(a.root));
+  }
+
+  @Test
   /** Test bst insertion with more nodes */
   public void test10bstInsert() {
     AVL a = new AVL();
